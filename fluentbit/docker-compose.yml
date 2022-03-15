@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  fluentbit:
+    image: fluent/fluent-bit
+    restart: unless-stopped
+    ports:
+     - 127.0.0.1:24224:24224
+    command: ["/fluent-bit/bin/fluent-bit", "-i", "forward", "-o", "stdout", "-p", "format=json_lines", "-f", "1"]
