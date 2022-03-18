@@ -10,8 +10,6 @@ services:
       - 5432:5432
     environment: 
       POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
-    logging:
-      driver: "fluentd"
   
   adminer:
     image: adminer

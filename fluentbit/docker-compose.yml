@@ -5,5 +5,10 @@ services:
     image: fluent/fluent-bit
     restart: unless-stopped
     ports:
-     - 127.0.0.1:24224:24224
-    command: ["/fluent-bit/bin/fluent-bit", "-i", "forward", "-o", "stdout", "-p", "format=json_lines", "-f", "1"]
+      - "24224:24224"
+      - "24224:24224/udp"
+    volumes:
+      - "./conf:/fluentbit/conf"
+    command: ["/fluent-bit/bin/fluent-bit", "-c", "/fluentbit/conf/fluentbit.conf"]
+    logging:
+      driver: "json-file"
